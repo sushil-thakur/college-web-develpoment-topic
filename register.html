@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styless.css">
+    <script>
+        function validateForm(event) {
+            // Prevent form submission initially
+            event.preventDefault();
+
+            // Get all form fields
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Clear previous error messages
+            document.getElementById('username-error').innerText = "";
+            document.getElementById('email-error').innerText = "";
+            document.getElementById('password-error').innerText = "";
+            document.getElementById('confirm-password-error').innerText = "";
+
+            // Hide icons initially
+            document.querySelector('.icon.username').style.visibility = "hidden";
+            document.querySelector('.icon.email').style.visibility = "hidden";
+            document.querySelector('.icon.password').style.visibility = "hidden";
+            document.querySelector('.icon.confirm-password').style.visibility = "hidden";
+
+            let isValid = true;
+
+            // Validate username
+            if (username === "") {
+                document.getElementById('username-error').innerText = "Username is required";
+                document.querySelector('.icon.username').style.visibility = "visible"; // Show icon for error
+                isValid = false;
+            }
+
+            // Validate email
+            if (email === "") {
+                document.getElementById('email-error').innerText = "Email is required";
+                document.querySelector('.icon.email').style.visibility = "visible"; // Show icon for error
+                isValid = false;
+            }
+
+            // Validate password (minimum 6 characters)
+            if (password === "") {
+                document.getElementById('password-error').innerText = "Password is required";
+                document.querySelector('.icon.password').style.visibility = "visible"; // Show icon for error
+                isValid = false;
+            } else if (password.length < 6) {
+                document.getElementById('password-error').innerText = "Password must be at least 6 characters";
+                document.querySelector('.icon.password').style.visibility = "visible"; // Show icon for error
+                isValid = false;
+            }
+
+            // Validate confirm password
+            if (confirmPassword === "") {
+                document.getElementById('confirm-password-error').innerText = "Confirm password is required";
+                document.querySelector('.icon.confirm-password').style.visibility = "visible"; // Show icon for error
+                isValid = false;
+            } else if (confirmPassword !== password) {
+                document.getElementById('confirm-password-error').innerText = "Passwords do not match";
+                document.querySelector('.icon.confirm-password').style.visibility = "visible"; // Show icon for error
+                isValid = false;
+            }
+
+            // If all validations pass, submit the form
+            if (isValid) {
+                document.getElementById('registerForm').submit();
+            }
+        }
+
+        // Add input event listener to clear error message for username
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('username').addEventListener('input', function () {
+                document.getElementById('username-error').innerText = "";
+                document.querySelector('.icon.username').style.visibility = "hidden"; // Hide icon when typing
+            });
+            document.getElementById('email').addEventListener('input', function () {
+                document.getElementById('email-error').innerText = "";
+                document.querySelector('.icon.email').style.visibility = "hidden"; // Hide icon when typing
+            });
+            document.getElementById('password').addEventListener('input', function () {
+                document.getElementById('password-error').innerText = "";
+                document.querySelector('.icon.password').style.visibility = "hidden"; // Hide icon when typing
+            });
+            document.getElementById('confirm-password').addEventListener('input', function () {
+                document.getElementById('confirm-password-error').innerText = "";
+                document.querySelector('.icon.confirm-password').style.visibility = "hidden"; // Hide icon when typing
+            });
+        });
+    </script>
+</head>
+<body>
+    <section class="register-container">
+        <h2>Register</h2>
+        <form id="registerForm" action="#" method="post" onsubmit="validateForm(event)">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" aria-describedby="username-error">
+                <span class="icon username">!</span>
+                <span id="username-error" style="color: red; font-size: 12px;"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" aria-describedby="email-error">
+                <span class="icon email">!</span>
+                <span id="email-error" style="color: red; font-size: 12px;"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" aria-describedby="password-error">
+                <span class="icon password">!</span>
+                <span id="password-error" style="color: red; font-size: 12px;"></span>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" aria-describedby="confirm-password-error">
+                <span class="icon confirm-password">!</span>
+                <span id="confirm-password-error" style="color: red; font-size: 12px;"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

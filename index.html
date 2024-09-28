@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="Tori">
+    <div class="fk"></div>
+   
+    <button id="btn-try" onclick="toggleContent()">show</button>
+     
+</body>
+<script>
+const html = `
+    <h1>Fuck you thakur</h1>
+`
+let isVisible = false;
+
+const toggleContent = () => {
+    const contentDiv = document.querySelector(".fk");
+    const button = document.getElementById('btn-try');
+    const toridiv = document.querySelector('.Tori')
+    if (isVisible) {
+        contentDiv.innerHTML = '';
+        button.innerHTML = 'show';
+
+    } else {
+        contentDiv.innerHTML = html;
+        button.innerHTML = 'hide';
+    }
+
+    isVisible = !isVisible;
+}
+</script>
+</html>
